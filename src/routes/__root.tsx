@@ -4,15 +4,16 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import TanStackQueryLayout from "../integrations/tanstack-query/layout.tsx";
 import type { QueryClient } from "@tanstack/react-query";
-import Sidebar from "@/components/Sidebar.tsx";
+import Sidebar from "@/components/Sidebar/index.tsx";
+import { AppProvider } from "@/context/menu-context.tsx";
 
 interface MyRouterContext {
   queryClient: QueryClient;
 }
 
-export const Route = createRootRouteWithContext<MyRouterContext>()({
-  component: () => (
-    <>
+const RootLayout = () => {
+  return (
+    <AppProvider>
       <Box
         sx={{
           display: "flex",
@@ -26,8 +27,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         <Box
           sx={{
             flex: 1,
-            overflowY: "auto",
-            padding: "24px 36px 40px 0",
+            overflow: "auto",
+            padding: { xs: "24px 16px", md: "24px 36px 40px 0" },
           }}
         >
           <Outlet />
@@ -35,6 +36,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       </Box>
       <TanStackRouterDevtools />
       <TanStackQueryLayout />
-    </>
-  ),
+    </AppProvider>
+  );
+};
+
+export const Route = createRootRouteWithContext<MyRouterContext>()({
+  component: RootLayout,
 });
