@@ -63,7 +63,7 @@ const FindingsPerSource = () => {
 
               <Typography
                 sx={{
-                  fontFamily: "Inter",
+                  fontFamily: "theme.typography.fontFamily",
                   fontWeight: 600,
                   fontSize: "2.25rem",
                   lineHeight: "0.8",

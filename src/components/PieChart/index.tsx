@@ -8,11 +8,11 @@ const Label = styled.span`
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
-  font-family: Inter;
+  font-family: ${({ theme }) => theme.typography.fontFamily};
   font-weight: 600;
   font-size: 35px;
   line-height: 28px;
-  color: #656575;
+  color: ${({ theme }) => theme.palette.text.disabled};
 `;
 
 const TonicDonutChart = ({

@@ -43,7 +43,7 @@ const DashboardTable = () => {
   return (
     <Box
       sx={{
-        borderRadius: "10px",
+        borderRadius: (theme) => `${theme.shape.borderRadius}px`,
         overflow: "hidden",
         boxShadow: "0px 2.9px 4px 0px #0000000D",
         border: "1px solid #EAECF0",
@@ -52,10 +52,10 @@ const DashboardTable = () => {
       <TableContainer
         component={Paper}
         sx={{
-          borderRadius: "10px",
+          borderRadius: (theme) => `${theme.shape.borderRadius}px`,
           overflowX: "auto",
           "& .MuiTableContainer-root": {
-            borderRadius: "10px",
+            borderRadius: (theme) => `${theme.shape.borderRadius}px`,
           },
         }}
       >
@@ -72,11 +72,12 @@ const DashboardTable = () => {
                   key={heading}
                   sx={{
                     padding: "12px 24px",
-                    background: "#fff",
-                    borderBottom: "1px solid #EAECF0",
-                    color: "#9A9AAF",
+                    background: "background.paper",
+                    borderBottom: "1px solid",
+                    borderColor: "divider",
+                    color: "text.secondary",
                     fontWeight: 500,
-                    fontSize: "0.75rem",
+                    fontSize: "caption.fontSize",
                     lineHeight: "1.125rem",
                     textTransform: "uppercase",
                   }}
@@ -88,10 +89,11 @@ const DashboardTable = () => {
           </TableHead>
           <TableBody
             sx={{
-              td: {
+              "td, th": {
                 padding: "16px 24px",
-                borderBottom: "1px solid #EAECF0",
-                fontSize: "0.875rem",
+                borderBottom: "1px solid",
+                borderColor: "divider",
+                fontSize: "body2.fontSize",
                 lineHeight: "1.25rem",
               },
             }}
@@ -101,7 +103,7 @@ const DashboardTable = () => {
                 key={row.id}
                 sx={{
                   "&:hover": {
-                    backgroundColor: "#F9FAFB",
+                    backgroundColor: (theme) => theme.palette.action.hover,
                   },
                 }}
               >

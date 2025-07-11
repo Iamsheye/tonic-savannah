@@ -9,9 +9,9 @@ export const StyledVulnerableAssetsTable = styled.table`
   }
 
   th {
-    color: #9a9aaf;
+    color: ${({ theme }) => theme.palette.text.secondary};
     font-weight: 500;
-    font-size: 0.75rem;
+    font-size: ${({ theme }) => theme.typography.caption.fontSize};
     leading-trim: NONE;
     line-height: 1.125rem;
   }
@@ -20,7 +20,7 @@ export const StyledVulnerableAssetsTable = styled.table`
   td {
     text-align: left;
     padding: 12px 0;
-    border-bottom: 1px solid #eaecf0;
+    border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
   }
 
   .severities {
@@ -29,11 +29,8 @@ export const StyledVulnerableAssetsTable = styled.table`
   }
 
   .asset-name {
-    font-size: 0.875rem;
+    font-size: ${({ theme }) => theme.typography.body2.fontSize};
     line-height: 1.25rem;
-    background:
-      linear-gradient(0deg, #383874, #383874),
-      linear-gradient(0deg, #03165f, #03165f);
-    background-clip: text;
+    color: ${({ theme }) => theme.palette.text.primary};
   }
 `;

@@ -1,13 +1,15 @@
 import Box from "@mui/material/Box";
-import { CircleX } from "lucide-react";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
+import { alpha } from "@mui/material/styles";
+import { CircleX } from "lucide-react";
+
 import MenuButton from "../MenuButton";
-import DashboardIcon from "@/assets/icon-tsx/dashboard";
-import OptionsIcon from "@/assets/icon-tsx/options";
-import FindingsIcon from "@/assets/icon-tsx/findings";
 import AlertsIcon from "@/assets/icon-tsx/alerts";
-import SettingsIcon from "@/assets/icon-tsx/settings";
 import BotsIcon from "@/assets/icon-tsx/bots";
+import DashboardIcon from "@/assets/icon-tsx/dashboard";
+import FindingsIcon from "@/assets/icon-tsx/findings";
+import OptionsIcon from "@/assets/icon-tsx/options";
+import SettingsIcon from "@/assets/icon-tsx/settings";
 import { useAppContext } from "@/context/menu-context";
 
 const Sidebar = () => {
@@ -116,8 +118,11 @@ const Sidebar = () => {
                 sx={{
                   display: "grid",
                   placeItems: "center",
-                  borderRadius: "10px",
-                  backgroundColor: item.isActive ? "#416BFF1A" : "transparent",
+                  borderRadius: (theme) => `${theme.shape.borderRadius}px`,
+                  backgroundColor: (theme) =>
+                    item.isActive
+                      ? alpha(theme.palette.primary.main, 0.1)
+                      : "transparent",
                   width: "100%",
                   aspectRatio: "1 / 1",
                 }}
@@ -129,7 +134,8 @@ const Sidebar = () => {
               sx={{
                 margin: "12px 0",
                 height: "2px",
-                backgroundColor: "#6C69FF40",
+                backgroundColor: (theme) =>
+                  alpha(theme.palette.secondary.main, 0.25),
               }}
             ></Box>
             {SECOND_MENU.map((item) => (
@@ -138,7 +144,7 @@ const Sidebar = () => {
                 sx={{
                   display: "grid",
                   placeItems: "center",
-                  borderRadius: "10px",
+                  borderRadius: (theme) => `${theme.shape.borderRadius}px`,
                   width: "100%",
                   aspectRatio: "1 / 1",
                 }}

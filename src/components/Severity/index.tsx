@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useTheme } from "@mui/material/styles";
 
 export type ICritical = "critical" | "high" | "medium" | "low";
 
@@ -8,16 +9,8 @@ interface ISeverityProps {
   count?: number;
 }
 
-// first array is background color, second is text color
-const SEVERITY_COLOR_MAP: Record<ICritical, [string, string]> = {
-  critical: ["#BA00011A", "#BA0001"],
-  high: ["#FF2D2E1A", "#FF2D2E"],
-  medium: ["#FAA24B1A", "#FAA24B"],
-  low: ["#53CA431A", "#53CA43"],
-};
-
 const StyledSeverity = styled.div<{
-  status: ICritical;
+  colors: { bg: string; text: string };
 }>`
   border-radius: 6px;
   display: flex;
@@ -25,8 +18,8 @@ const StyledSeverity = styled.div<{
   padding: 4px 8px;
   text-transform: capitalize;
   width: max-content;
-  background-color: ${(props) => SEVERITY_COLOR_MAP[props.status][0]};
-  color: ${(props) => SEVERITY_COLOR_MAP[props.status][1]};
+  background-color: ${(props) => props.colors.bg};
+  color: ${(props) => props.colors.text};
 
   & .label {
     font-family: Inter;
@@ -47,8 +40,23 @@ const StyledSeverity = styled.div<{
 `;
 
 const Severity = ({ status, count, isShort }: ISeverityProps) => {
+  const theme = useTheme();
+  const COLOR_CODE = theme.palette.severity;
+
+  const SEVERITY_COLOR_MAP: Record<ICritical, [string, string]> = {
+    critical: [COLOR_CODE.criticalBg, COLOR_CODE.critical],
+    high: [COLOR_CODE.highBg, COLOR_CODE.high],
+    medium: [COLOR_CODE.mediumBg, COLOR_CODE.medium],
+    low: [COLOR_CODE.lowBg, COLOR_CODE.low],
+  };
+
   return (
-    <StyledSeverity status={status}>
+    <StyledSeverity
+      colors={{
+        bg: SEVERITY_COLOR_MAP[status][0],
+        text: SEVERITY_COLOR_MAP[status][1],
+      }}
+    >
       <span className="label">{isShort ? status.charAt(0) : status}</span>
       {count && <span className="count">{count}</span>}
     </StyledSeverity>
