@@ -4,56 +4,9 @@ import Heading from "../Heading";
 import Severity from "../Severity";
 import { StyledVulnerableAssetsTable } from "./tables.styles";
 import type { ICritical } from "../Severity";
+import { VULNERABLE_ASSETS } from "@/constants";
 
 const TopVulnerableAssets = () => {
-  const VULNERABLE_ASSETS = [
-    {
-      id: 1,
-      name: "D.G. ASUNTOS LEGALES",
-      severity: [
-        {
-          id: "critical",
-          count: 3,
-        },
-        {
-          id: "high",
-          count: 3,
-        },
-        {
-          id: "medium",
-          count: 1,
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: "D.G. CLIENTE",
-      severity: [
-        {
-          id: "critical",
-          count: 3,
-        },
-        {
-          id: "high",
-          count: 13,
-        },
-        {
-          id: "medium",
-          count: 15,
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "D.G. E&P",
-      severity: [
-        { id: "critical", count: 2 },
-        { id: "high", count: 42 },
-        { id: "medium", count: 71 },
-      ],
-    },
-  ];
-
   return (
     <Box
       sx={{

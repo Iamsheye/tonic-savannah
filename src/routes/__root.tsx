@@ -18,7 +18,7 @@ const RootLayout = () => {
         sx={{
           display: "flex",
           flexDirection: "row",
-          gap: "40px",
+          gap: "32px",
           height: "100dvh",
         }}
       >

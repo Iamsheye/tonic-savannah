@@ -1,13 +1,16 @@
 import Box from "@mui/material/Box";
 import { createFileRoute } from "@tanstack/react-router";
-import { Menu } from "lucide-react";
-import styled from "@emotion/styled";
+import { Menu, Settings } from "lucide-react";
 
 import FindingsBySeverity from "@/components/FindingsBySeverity";
 import FindingsPerSource from "@/components/FindingsPerSource";
 import TopVulnerableAssets from "@/components/TopVulnerableAssets";
 import { useAppContext } from "@/context/menu-context";
 import MenuButton from "@/components/MenuButton";
+import Input from "@/components/Input";
+import CustomSelect from "@/components/Select";
+import DashboardTable from "@/components/DashboardTable";
+import { SELECTS } from "@/constants";
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -50,9 +53,9 @@ function App() {
           <Menu className="menu-icon" />
         </MenuButton>
       </Box>
+
       <Box
         sx={{
-          minWidth: { md: "1168px", xs: "auto" },
           overflowX: "auto",
         }}
       >
@@ -65,6 +68,8 @@ function App() {
             boxShadow: "0px 2.22px 3.33px 0px #0000000D",
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
+            minWidth: { xs: "100%", md: "1168px" },
+            overflowX: "auto",
           }}
         >
           <FindingsBySeverity />
@@ -72,6 +77,47 @@ function App() {
           <FindingsPerSource />
         </Box>
       </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          gap: "10px",
+          flexWrap: "wrap",
+          alignItems: "flex-start",
+        }}
+      >
+        <Input placeholder="Search" />
+
+        {SELECTS.map((select) => (
+          <CustomSelect
+            key={select.id}
+            id={select.id}
+            labelId={select.id}
+            label={select.name}
+            labelName={select.name}
+            items={[{ label: "Option 1", value: "option1" }]}
+          />
+        ))}
+
+        <Box
+          sx={{
+            flexShrink: 0,
+            width: "46px",
+            height: "46px",
+            borderRadius: "12px",
+            background: "#FFFFFF",
+            border: "1px solid #C6CBD9",
+            boxShadow: "0px 2.22px 3.33px 0px #0000000D",
+            display: "grid",
+            placeItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          <Settings style={{ width: "16px", height: "16px" }} />
+        </Box>
+      </Box>
+
+      <DashboardTable />
     </Box>
   );
 }
