@@ -57,7 +57,7 @@ const Sidebar = () => {
           flexDirection: "column",
           padding: { xs: "112px 24px 24px", md: "24px 0 40px 36px" },
           gap: "48px",
-          position: { md: "inherit", xs: "absolute" },
+          position: { md: "inherit", xs: "fixed" },
           top: { xs: "0", md: "auto" },
           right: { xs: "0", md: "auto" },
           background: { xs: "white", md: "transparent" },
