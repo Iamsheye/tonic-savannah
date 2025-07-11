@@ -8,13 +8,14 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-
 import { useQuery } from "@tanstack/react-query";
+
 import InternetExposed from "../InternetExposed";
 import Severity from "../Severity";
 import StatusIndicator from "../StatusIndicator";
-import { DASHBOARD_DATA } from "@/constants";
+import type { DashboardData } from "./types";
 import ContactPhoneIcon from "@/assets/icon-tsx/contact-phone";
+import { DASHBOARD_DATA } from "@/constants";
 
 const headings = [
   "Finding",
@@ -30,9 +31,12 @@ const headings = [
 ];
 
 const DashboardTable = () => {
-  const { data } = useQuery({
+  const { data } = useQuery<Array<DashboardData>>({
     queryKey: ["dashboard-data"],
-    queryFn: () => Promise.resolve(DASHBOARD_DATA),
+    queryFn: () =>
+      new Promise((resolve) => {
+        resolve(DASHBOARD_DATA);
+      }),
     initialData: [],
   });
 
