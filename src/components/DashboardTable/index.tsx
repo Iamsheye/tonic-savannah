@@ -18,16 +18,16 @@ import ContactPhoneIcon from "@/assets/icon-tsx/contact-phone";
 import { DASHBOARD_DATA } from "@/constants";
 
 const headings = [
-  "Finding",
-  "Asset",
-  "Affected Software",
-  "Owned By",
-  "Internet Exposed",
-  "Status",
-  "Severity",
-  "Source",
-  "First Seen",
-  "Last Seen",
+  { name: "Finding" },
+  { name: "Asset" },
+  { name: "Affected Software" },
+  { name: "Owned By" },
+  { name: "Internet Exposed", sx: { maxWidth: "88px" } },
+  { name: "Status" },
+  { name: "Severity" },
+  { name: "Source" },
+  { name: "First Seen" },
+  { name: "Last Seen" },
 ];
 
 const DashboardTable = () => {
@@ -61,7 +61,7 @@ const DashboardTable = () => {
       >
         <Table
           sx={{
-            minWidth: 1620,
+            minWidth: 1662,
           }}
           aria-label="dashboard findings table"
         >
@@ -69,9 +69,9 @@ const DashboardTable = () => {
             <TableRow>
               {headings.map((heading) => (
                 <TableCell
-                  key={heading}
+                  key={heading.name}
                   sx={{
-                    padding: "12px 24px",
+                    padding: "12px 0 12px 24px",
                     background: "background.paper",
                     borderBottom: "1px solid",
                     borderColor: "divider",
@@ -80,9 +80,10 @@ const DashboardTable = () => {
                     fontSize: "caption.fontSize",
                     lineHeight: "1.125rem",
                     textTransform: "uppercase",
+                    ...heading.sx,
                   }}
                 >
-                  {heading}
+                  {heading.name}
                 </TableCell>
               ))}
             </TableRow>
@@ -90,7 +91,7 @@ const DashboardTable = () => {
           <TableBody
             sx={{
               "td, th": {
-                padding: "16px 24px",
+                padding: "16px 8px 16px 24px",
                 borderBottom: "1px solid",
                 borderColor: "divider",
                 fontSize: "body2.fontSize",

@@ -8,7 +8,7 @@ import TopVulnerableAssets from "@/components/TopVulnerableAssets";
 import { useAppContext } from "@/context/menu-context";
 import MenuButton from "@/components/MenuButton";
 import Input from "@/components/Input";
-import CustomSelect from "@/components/Select";
+import { NativeSelect } from "@/components/Select";
 import DashboardTable from "@/components/DashboardTable";
 import { SELECTS } from "@/constants";
 
@@ -81,7 +81,7 @@ function App() {
       <Box
         sx={{
           display: "flex",
-          gap: "10px",
+          gap: "8px",
           flexWrap: "wrap",
           alignItems: "flex-start",
         }}
@@ -89,14 +89,12 @@ function App() {
         <Input placeholder="Search" />
 
         {SELECTS.map((select) => (
-          <CustomSelect
-            key={select.id}
-            id={select.id}
-            labelId={select.id}
-            label={select.name}
-            labelName={select.name}
-            items={[{ label: "Option 1", value: "option1" }]}
-          />
+          <NativeSelect>
+            <option value="" disabled selected>
+              {select.name}
+            </option>
+            <option value="option1">Option 1</option>
+          </NativeSelect>
         ))}
 
         <Box
@@ -111,6 +109,10 @@ function App() {
             display: "grid",
             placeItems: "center",
             cursor: "pointer",
+            marginLeft: {
+              xs: "0",
+              md: "auto",
+            },
           }}
         >
           <Settings style={{ width: "16px", height: "16px" }} />

@@ -10,7 +10,7 @@ type CustomSelectProps = SelectProps & {
   items: Array<{ label: string; value: string }>;
 };
 
-const StyledSelect = styled(Select)<SelectProps>(({ theme }) => ({
+const StyledSelect = styled(Select)<SelectProps>(() => ({
   width: "100%",
   borderRadius: "12px",
   overflow: "hidden",
@@ -31,7 +31,7 @@ const StyledSelect = styled(Select)<SelectProps>(({ theme }) => ({
   },
 }));
 
-const CustomSelect = (props: CustomSelectProps) => {
+export const CustomSelect = (props: CustomSelectProps) => {
   return (
     <FormControl
       sx={{
@@ -58,4 +58,30 @@ const CustomSelect = (props: CustomSelectProps) => {
   );
 };
 
-export default CustomSelect;
+const NativeSelectStyles = styled("select")(({ theme }) => ({
+  padding: "12px 36px 12px 16px",
+  background: "#fff",
+  borderRadius: "12px",
+  border: "none",
+  boxShadow: "0px 2.22px 3.33px 0px #0000000D",
+  fontSize: theme.typography.body2.fontSize,
+
+  appearance: "none",
+  "-webkit-appearance": "none",
+
+  backgroundImage: "url(./svg/chevron-down.svg)",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "right 1rem center",
+  backgroundSize: "1em",
+
+  "&:focus": {
+    outline: "none",
+    borderColor: "#9A9AAF",
+  },
+}));
+
+interface NativeSelectProps extends React.HTMLAttributes<HTMLSelectElement> {}
+
+export const NativeSelect = ({ children, ...props }: NativeSelectProps) => {
+  return <NativeSelectStyles {...props}>{children}</NativeSelectStyles>;
+};
